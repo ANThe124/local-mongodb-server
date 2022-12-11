@@ -54,7 +54,7 @@ Connect your web app to "mongo-container" through `PORT 27017` and start develop
 
 # Option 2: Using A docker-compose file:
 
-Create a `local-mongo-express.yaml` file:
+Create a `local-mongodb-server.yaml` file:
 ```yaml
 version: '3.1'
 
@@ -84,8 +84,8 @@ Use `docker ps` to make sure that no containers are currently running
 
 Run both containers using: 
 ```bash
-#run local-mongo-express.yaml file
-docker-compose -f local-mongo-express.yaml
+#run local-mongodb-server.yaml file
+docker-compose -f local-mongodb-server.yaml
 ```
 Open `localhost:8081` to access the mongo-express database admin portal. 
 
