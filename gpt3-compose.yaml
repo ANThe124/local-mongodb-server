@@ -1,5 +1,3 @@
-# These environment credentials are just placeholders
-# Please configure your server credentials with best practices
 version: '3'
 
 services:
