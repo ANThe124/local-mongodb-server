@@ -56,28 +56,36 @@ Connect your web app to "mongo-container" through `PORT 27017` and start develop
 
 Create a `local-mongodb-server.yaml` file:
 ```yaml
-version: '3.1'
+version: '3.5'
 
 services:
 
   mongo-container:
     image: mongo:latest
     restart: always
+    networks:
+      - mongo-network
     ports:
-      - 27017:27017
+      - ${MONGODB_PORT}:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: secretpassword
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
 
   mongo-express-container:
     image: mongo-express:latest
     restart: always
+    networks:
+      - mongo-network
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: secretpassword
-      ME_CONFIG_MONGODB_SERVER: mongo-container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_ADMIN_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${MONGODB_SERVER}
+
+networks:
+  mongo-network:
+    driver: bridge
 ```
 
 Use `docker ps` to make sure that no containers are currently running
