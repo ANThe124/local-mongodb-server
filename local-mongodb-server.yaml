@@ -1,6 +1,6 @@
 # These environment credentials are just placeholders
 # Please configure your server credentials with best practices
-version: '3'
+version: '3.5'
 
 services:
   mongodb-container:
@@ -9,10 +9,10 @@ services:
     networks:
       - mongo-network
     ports:
-      - 27017:27017
+      - ${MONGODB_PORT}:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: secretpassword
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
 
   mongo-express-container:
     depends_on:
@@ -24,9 +24,9 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: secretpassword
-      ME_CONFIG_MONGODB_SERVER: mongodb-container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_ADMIN_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_ADMIN_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${MONGODB_SERVER}
 
 networks:
   mongo-network:
