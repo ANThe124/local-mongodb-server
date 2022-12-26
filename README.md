@@ -93,7 +93,7 @@ Use `docker ps` to make sure that no containers are currently running
 Run both containers using: 
 ```bash
 #run local-mongodb-server.yaml file
-docker-compose -f local-mongodb-server.yaml
+docker-compose -f local-mongodb-server.yaml up
 ```
 Open `localhost:8081` to access the mongo-express database admin portal. 
 
