@@ -3,8 +3,9 @@
 version: '3.5'
 
 services:
-  mongodb-container:
+  mongodb:
     image: mongo:latest
+    container_name: mongodb-container
     restart: always
     networks:
       - mongo-network
@@ -14,10 +15,11 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
 
-  mongo-express-container:
+  mongo-express:
     depends_on:
-      - mongodb-container
+      - mongodb
     image: mongo-express:latest
+    container_name: mongo-express-container
     restart: always
     networks:
       - mongo-network
